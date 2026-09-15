@@ -1,0 +1,37 @@
+export const siteConfig = {
+  name: "JBM SOFT",
+  legalName: "제이비엠 소프트",
+  brandEn: "JBM SOFT",
+  url: "https://jbmsoft.co.kr",
+  locale: "ko_KR",
+  description:
+    "JBM SOFT는 8년간 수많은 프로젝트를 수행한 소프트웨어 전문 개발팀입니다. 웹사이트, 앱, 내부 프로그램을 직접 설계·제작·관리합니다.",
+  keywords: [
+    "JBM SOFT",
+    "제이비엠소프트",
+    "외주 개발",
+    "웹 제작",
+    "앱 제작",
+    "교육용 앱",
+    "학원 관리 시스템",
+    "OMR 채점",
+    "예약 시스템",
+    "파이썬 자동화",
+    "MVP 개발",
+    "온라인 타이머",
+    "QR 코드 생성기",
+    "글자수 계산기",
+  ],
+  email: "jaewon@jbmsoft.co.kr",
+  phone: "010-5150-3884",
+  phoneTel: "+82-10-5150-3884",
+  bizNo: "157-24-02391",
+  representative: "최재원",
+  address: "경기도 용인시 수지구 정든로6번길 2(죽전동)",
+  years: 8,
+  ogImage: "/images/og-default.png",
+  logo: "/images/logo.png",
+  businessCertImage: "/images/business-registration.png",
+} as const;
+
+export type SiteConfig = typeof siteConfig;
