@@ -9,6 +9,7 @@ import { cn } from "@/lib/cn";
 const links = [
   { href: "/portfolio", label: "제작 사례" },
   { href: "/tools", label: "무료 도구" },
+  { href: "/guides", label: "가이드" },
   { href: "/#pricing", label: "기간·견적" },
   { href: "/contact", label: "문의" },
 ];

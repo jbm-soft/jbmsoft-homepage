@@ -380,6 +380,34 @@ export default function HomePage() {
               </Link>
             ))}
           </div>
+          <div className="mt-6">
+            <Link href="/guides" className="text-sm font-semibold text-[#35e0c3] hover:underline">
+              실수령액·타이머·QR·크롤링 가이드 보기 →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20">
+        <div className="container-page">
+          <div className="eyebrow">Guides</div>
+          <h2 className="section-title">검색으로 찾기 쉬운 가이드</h2>
+          <p className="mb-6 max-w-2xl text-zinc-400">
+            사람들이 실제로 검색하는 주제로 정리했습니다. 도구 사용 후 제작 상담으로 이어집니다.
+          </p>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              ["연봉 실수령액 계산", "/guides/salary-take-home"],
+              ["무료 온라인 타이머", "/guides/online-timer"],
+              ["QR 코드 생성기", "/guides/qr-code-generator"],
+              ["웹 크롤링 외주", "/guides/web-crawling-outsource"],
+              ["행사 부스 게임", "/guides/event-booth-game"],
+            ].map(([label, href]) => (
+              <Link key={href} href={href} className="card p-4 transition hover:border-[#7c6cff]/45">
+                <div className="font-bold">{label}</div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

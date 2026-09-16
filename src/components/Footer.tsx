@@ -23,6 +23,7 @@ export function Footer() {
           <ul className="space-y-2 text-sm text-zinc-400">
             <li><Link href="/portfolio" className="hover:text-white">제작 사례</Link></li>
             <li><Link href="/tools" className="hover:text-white">무료 도구</Link></li>
+            <li><Link href="/guides" className="hover:text-white">가이드</Link></li>
             <li><Link href="/contact" className="hover:text-white">문의</Link></li>
             <li><Link href="/privacy" className="hover:text-white">개인정보처리방침</Link></li>
             <li><Link href="/terms" className="hover:text-white">이용약관</Link></li>
