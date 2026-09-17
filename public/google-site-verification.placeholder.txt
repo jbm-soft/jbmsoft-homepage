@@ -1,0 +1,3 @@
+# Google Search Console 연결용
+# 아래에 구글에서 받은 HTML 인증 파일 내용을 넣거나, meta 태그를 layout에 추가하세요.
+# 파일명 예: googleXXXXXXXX.html

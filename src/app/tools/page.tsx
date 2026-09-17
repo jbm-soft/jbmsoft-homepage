@@ -5,16 +5,17 @@ import { tools } from "@/data/tools";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "무료 웹 도구 – 타이머·QR·글자수·포모도로",
+  title: "무료 웹 도구 100+ – 타이머·HWP·확장자·실수령액·QR",
   description:
-    "설치 없이 바로 쓰는 JBM SOFT 무료 웹 도구. 온라인 타이머, 스톱워치, 포모도로, QR 코드, BMI, 글자수, 비밀번호, JSON 포맷터.",
+    "설치 없이 바로 쓰는 JBM SOFT 무료 웹 도구 100개 이상. HWP 뷰어, 파일 확장자 변경, 이미지 변환, 실수령액·부가세 계산, QR·타이머.",
   path: "/tools",
   keywords: [
     "온라인 타이머",
+    "HWP 뷰어",
+    "파일 확장자 변경",
+    "실수령액 계산기",
     "QR 코드 생성기",
-    "글자수 계산기",
-    "포모도로 타이머",
-    "비밀번호 생성기",
+    "이미지 변환",
     "무료 웹 도구",
   ],
 });

@@ -4,6 +4,7 @@ import path from "path";
 const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
+  transpilePackages: [],
   turbopack: {
     root: path.join(__dirname),
   },

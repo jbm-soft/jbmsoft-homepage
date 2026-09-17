@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { getTool } from "@/data/tools";
+import { ImplRouter } from "@/components/tools/ImplRouter";
 
 function Panel({ children }: { children: React.ReactNode }) {
   return <div className="card p-5 md:p-6">{children}</div>;
@@ -26,7 +28,39 @@ function ActionButton({
   );
 }
 
+const LEGACY = new Set([
+  "timer",
+  "stopwatch",
+  "pomodoro",
+  "qrcode",
+  "bmi",
+  "unit-converter",
+  "password",
+  "word-counter",
+  "dday",
+  "age",
+  "lotto",
+  "fortune",
+  "quotes",
+  "rps",
+  "engname",
+  "base64",
+  "json-formatter",
+  "color-picker",
+  "salary",
+  "percent",
+  "discount",
+  "loan",
+  "date-calc",
+  "random-picker",
+  "uuid",
+  "hash",
+]);
+
 export function ToolApp({ slug }: { slug: string }) {
+  const tool = getTool(slug);
+  if (!tool) return <Panel>없는 도구입니다.</Panel>;
+  if (!LEGACY.has(slug)) return <ImplRouter tool={tool} />;
   if (slug === "timer") return <TimerTool />;
   if (slug === "stopwatch") return <StopwatchTool />;
   if (slug === "pomodoro") return <PomodoroTool />;
@@ -53,7 +87,7 @@ export function ToolApp({ slug }: { slug: string }) {
   if (slug === "random-picker") return <RandomPickerTool />;
   if (slug === "uuid") return <UuidTool />;
   if (slug === "hash") return <HashTool />;
-  return <Panel>준비 중인 도구입니다.</Panel>;
+  return <ImplRouter tool={tool} />;
 }
 
 function TimerTool() {
