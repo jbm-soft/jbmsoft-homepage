@@ -55,8 +55,8 @@ export function prelaunchMailto(subject: string) {
 export const firstPartyApps: FirstPartyApp[] = [
   {
     slug: "evidence",
-    name: "대화첩",
-    seoTitle: "대화첩 – 내보낸 대화를 사진 포함 PDF·증거목록으로",
+    name: "대화모아",
+    seoTitle: "대화모아 – 내보낸 대화를 사진 포함 PDF·증거목록으로",
     description:
       "카카오톡에서 내보낸 대화(txt·zip)를 휴대폰에서 사진이 들어간 PDF로 만들고, 표시한 메시지로 갑 제○호증 형식의 목록을 만듭니다. 원본 파일의 SHA-256 값도 함께 적습니다.",
     keywords: [
@@ -65,7 +65,7 @@ export const firstPartyApps: FirstPartyApp[] = [
       "카톡 증거",
       "카카오톡 대화 내보내기",
       "대화 PDF 변환",
-      "대화첩",
+      "대화모아",
     ],
     applicationCategory: "UtilitiesApplication",
     ogImage: "/images/apps/evidence-og.png",
@@ -74,11 +74,11 @@ export const firstPartyApps: FirstPartyApp[] = [
     subtitle: "내보낸 대화를 사진이 들어간 PDF와 증거목록으로",
     oneLiner: "카카오톡에서 내보낸 txt·zip 파일을 휴대폰에서 바로 정리합니다.",
     fixedNotice: "카카오와 관계없는 독립 앱입니다. 증거 채택 여부는 수사기관·법원이 판단합니다.",
-    alternateName: "대화첩 - 대화 내보내기 PDF·증거목록 정리",
-    guideEndCta: "이 과정을 휴대폰에서 한 번에 하고 싶다면, JBM SOFT가 만드는 대화첩(출시 준비 중)을 확인해 보세요.",
-    lead: "카카오톡의 공식 대화 내보내기는 텍스트와 압축 파일까지입니다. 대화첩은 그 파일을 공유받아, 사진이 들어간 대화 PDF와 표시한 메시지 목록으로 정리합니다. 대화 PDF는 휴대폰 안에서 만들고, 아직 스토어에 없습니다.",
+    alternateName: "대화모아 - 대화 내보내기 PDF·증거목록 정리",
+    guideEndCta: "이 과정을 휴대폰에서 한 번에 하고 싶다면, JBM SOFT가 만드는 대화모아(출시 준비 중)을 확인해 보세요.",
+    lead: "카카오톡의 공식 대화 내보내기는 텍스트와 압축 파일까지입니다. 대화모아는 그 파일을 공유받아, 사진이 들어간 대화 PDF와 표시한 메시지 목록으로 정리합니다. 대화 PDF는 휴대폰 안에서 만들고, 아직 스토어에 없습니다.",
     futureAction: "내보낸 파일로 PDF 만들기",
-    notifySubject: "대화첩 출시 알림",
+    notifySubject: "대화모아 출시 알림",
     cardSummary: "내보낸 대화 파일을 사진이 들어간 PDF와 목록으로 정리합니다.",
     cardPoints: ["txt·zip을 공유", "사진은 페이지 안에", "원본 SHA-256"],
     heroPoints: [
@@ -94,7 +94,7 @@ export const firstPartyApps: FirstPartyApp[] = [
       },
       {
         title: "안드로이드 공유로 앱에 넘깁니다",
-        body: "내보내기 직후의 공유 창, 또는 파일 앱에서 대화첩으로 보냅니다. 스토어 주소는 아직 없습니다.",
+        body: "내보내기 직후의 공유 창, 또는 파일 앱에서 대화모아로 보냅니다. 스토어 주소는 아직 없습니다.",
       },
       {
         title: "휴대폰 안에서 PDF가 만들어집니다",
@@ -168,9 +168,9 @@ export const firstPartyApps: FirstPartyApp[] = [
       ],
     },
     disclaimers: [
-      "대화첩은 파일을 읽기 쉬운 PDF와 목록으로 바꾸는 정리 도구입니다. 채택 여부는 제출받는 곳이 판단합니다.",
+      "대화모아는 파일을 읽기 쉬운 PDF와 목록으로 바꾸는 정리 도구입니다. 채택 여부는 제출받는 곳이 판단합니다.",
       "무엇을 낼지, 그 형식을 받을지는 제출받는 곳의 기준입니다. 필요하면 변호사 등 전문가와 상의하세요.",
-      "카카오톡은 카카오의 서비스입니다. 대화첩은 카카오와 관계없는 독립 앱이며, 제휴나 보증이 없습니다. 앱 이름과 아이콘에 카카오를 넣지 않습니다.",
+      "카카오톡은 카카오의 서비스입니다. 대화모아는 카카오와 관계없는 독립 앱이며, 제휴나 보증이 없습니다. 앱 이름과 아이콘에 카카오를 넣지 않습니다.",
       "공식 대화 내보내기가 PDF를 만들어 주지는 않습니다. 결과물은 텍스트·압축 파일이고, PDF는 이 앱이 따로 만듭니다.",
       "Google Play를 비롯한 스토어에 아직 등록되어 있지 않습니다. 다운로드 수, 이용자 리뷰, 패키지 이름은 없습니다.",
     ],
@@ -178,7 +178,7 @@ export const firstPartyApps: FirstPartyApp[] = [
       {
         question: "카톡 대화를 PDF로 저장할 때 사진도 들어가나요?",
         answer:
-          "공식 내보내기 자체는 PDF가 아닙니다. 사진이 들어 있는 txt·zip을 대화첩에 넘기면, 사진을 파일명만 남기지 않고 페이지 안에 넣도록 준비하고 있습니다. 텍스트만 내보내면 붙일 사진이 없습니다.",
+          "공식 내보내기 자체는 PDF가 아닙니다. 사진이 들어 있는 txt·zip을 대화모아에 넘기면, 사진을 파일명만 남기지 않고 페이지 안에 넣도록 준비하고 있습니다. 텍스트만 내보내면 붙일 사진이 없습니다.",
       },
       {
         question: "대화 내보내기를 하면 상대방에게 알림이 가나요?",

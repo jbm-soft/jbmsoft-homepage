@@ -33,7 +33,7 @@ function EvidenceConcept() {
       <Device>
         <div className="mb-3 flex items-end justify-between gap-3">
           <div>
-            <div className="text-[11px] font-bold text-[#7ec8ff]">대화첩</div>
+            <div className="text-[11px] font-bold text-[#7ec8ff]">대화모아</div>
             <div className="text-base font-extrabold tracking-tight">대화 정리</div>
           </div>
           <div className="text-xs font-bold text-[#35e0c3]">3 / 12</div>

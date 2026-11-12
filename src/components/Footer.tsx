@@ -35,7 +35,7 @@ export function Footer() {
           <div className="mb-3 text-sm font-bold text-zinc-200">직접 만드는 앱</div>
           <ul className="space-y-2 text-sm text-zinc-400">
             <li><Link href="/apps" className="hover:text-white">앱 소개</Link></li>
-            <li><Link href="/apps/evidence" className="hover:text-white">대화첩</Link></li>
+            <li><Link href="/apps/evidence" className="hover:text-white">대화모아</Link></li>
             <li><Link href="/apps/used-car-inspect" className="hover:text-white">차보는날</Link></li>
             <li><Link href="/apps/family-loan" className="hover:text-white">가족차용노트</Link></li>
           </ul>
