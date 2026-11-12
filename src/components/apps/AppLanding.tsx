@@ -8,6 +8,12 @@ import { siteConfig } from "@/data/site";
 import { adequateInterestLabel } from "@/data/tax-reference";
 import { androidAppJsonLd, breadcrumbJsonLd, organizationJsonLd } from "@/lib/seo";
 
+function topicParticle(name: string) {
+  const code = name.charCodeAt(name.length - 1);
+  if (code >= 0xac00 && code <= 0xd7a3 && (code - 0xac00) % 28 === 0) return "는";
+  return "은";
+}
+
 export function AppLanding({ app }: { app: FirstPartyApp }) {
   const mailto = prelaunchMailto(app.notifySubject);
   const guides = app.guideSlugs.map((slug) => getGuide(slug)).filter((guide) => guide !== undefined);
@@ -246,7 +252,7 @@ export function AppLanding({ app }: { app: FirstPartyApp }) {
             <div>
               <h2 className="text-xl font-extrabold tracking-tight">이 앱은 JBM SOFT가 직접 기획·개발합니다</h2>
               <p className="mt-2 max-w-2xl text-sm leading-relaxed text-zinc-400">
-                {app.name}은 고객 의뢰로 납품한 외주 사례가 아닙니다. {siteConfig.legalName}({siteConfig.brandEn})가 만듭니다.
+                {app.name}{topicParticle(app.name)} 고객 의뢰로 납품한 외주 사례가 아닙니다. {siteConfig.legalName}({siteConfig.brandEn})가 만듭니다.
                 이런 앱 제작이 필요하면 앱 개발 외주 문의로 이어집니다.
               </p>
             </div>
@@ -322,7 +328,7 @@ export function AppLanding({ app }: { app: FirstPartyApp }) {
                 {app.futureAction}
               </h2>
               <p className="mb-6 max-w-2xl text-sm leading-relaxed text-zinc-300 md:text-base">
-                {app.name}은 출시 예정입니다. 알림을 남기시면 스토어에 올릴 때 메일로 안내합니다.
+                {app.name}{topicParticle(app.name)} 출시 예정입니다. 알림을 남기시면 스토어에 올릴 때 메일로 안내합니다.
                 외주 개발 상담은 같은 문의 창구에서 받습니다.
               </p>
               <div className="flex flex-wrap gap-3">
