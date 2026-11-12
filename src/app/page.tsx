@@ -337,7 +337,7 @@ export default function HomePage() {
               <div className="eyebrow">Our apps</div>
               <h2 className="section-title">JBM SOFT가 직접 만드는 앱</h2>
               <p className="max-w-2xl text-zinc-400">
-                고객 의뢰로 납품한 외주 사례와 별개입니다. 안드로이드 앱 두 개이며, 아직 스토어에 없습니다.
+                고객 의뢰로 납품한 외주 사례와 별개입니다. 안드로이드 앱이며, 아직 스토어에 없습니다.
               </p>
             </div>
             <Link href="/apps" className="btn-ghost">

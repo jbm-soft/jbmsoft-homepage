@@ -57,7 +57,7 @@ export default function AppsPage() {
             <span className="gradient-text">직접 만드는 앱</span>
           </h1>
           <p className="max-w-2xl text-base leading-relaxed text-zinc-300">
-            아래 두 앱은 고객 의뢰를 받아 납품한 외주 작품이 아닙니다. {siteConfig.name}가 기획하고
+            아래 앱들은 고객 의뢰를 받아 납품한 외주 작품이 아닙니다. {siteConfig.name}가 기획하고
             개발하는 안드로이드 앱이며, 아직 Google Play에 없습니다. 지금은 출시 알림과 문의만 받습니다.
           </p>
         </div>
