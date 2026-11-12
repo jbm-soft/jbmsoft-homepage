@@ -9,9 +9,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   ...buildMetadata({
-    title: `${siteConfig.name} – 8년 실전 외주 개발팀`,
+    title: "JBM SOFT(제이비엠소프트) – 앱·웹 외주 개발, 8년 실전 개발팀",
     description: siteConfig.description,
     path: "/",
+    suffixBrand: false,
+    includeCanonical: false,
   }),
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,

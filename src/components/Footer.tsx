@@ -8,8 +8,8 @@ export function Footer() {
 
   return (
     <footer className="mt-20 border-t border-white/10 bg-[#050508]">
-      <div className="mx-auto grid w-[min(1180px,calc(100%-2rem))] gap-10 py-14 md:grid-cols-4">
-        <div className="md:col-span-1">
+      <div className="mx-auto grid w-[min(1180px,calc(100%-2rem))] gap-10 py-14 sm:grid-cols-2 lg:grid-cols-6">
+        <div className="lg:col-span-2">
           <div className="mb-4">
             <BrandLogo size="lg" />
           </div>
@@ -24,10 +24,22 @@ export function Footer() {
             <li><Link href="/portfolio" className="hover:text-white">제작 사례</Link></li>
             <li><Link href="/tools" className="hover:text-white">무료 도구</Link></li>
             <li><Link href="/guides" className="hover:text-white">가이드</Link></li>
+            <li><Link href="/services/app-development" className="hover:text-white">앱 개발 외주</Link></li>
+            <li><Link href="/pricing" className="hover:text-white">기간·견적</Link></li>
             <li><Link href="/contact" className="hover:text-white">문의</Link></li>
             <li><Link href="/privacy" className="hover:text-white">개인정보처리방침</Link></li>
             <li><Link href="/terms" className="hover:text-white">이용약관</Link></li>
           </ul>
+        </div>
+        <div>
+          <div className="mb-3 text-sm font-bold text-zinc-200">직접 만드는 앱</div>
+          <ul className="space-y-2 text-sm text-zinc-400">
+            <li><Link href="/apps" className="hover:text-white">앱 소개</Link></li>
+            <li><Link href="/apps/evidence" className="hover:text-white">대화모아</Link></li>
+            <li><Link href="/apps/used-car-inspect" className="hover:text-white">차보는날</Link></li>
+            <li><Link href="/apps/family-loan" className="hover:text-white">가족차용노트</Link></li>
+          </ul>
+          <p className="mt-3 text-xs leading-relaxed text-zinc-500">출시 예정 · 외주 사례와 별도</p>
         </div>
         <div>
           <div className="mb-3 text-sm font-bold text-zinc-200">바로 쓰는 도구</div>

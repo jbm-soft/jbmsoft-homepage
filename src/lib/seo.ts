@@ -8,6 +8,10 @@ type BuildMetaInput = {
   keywords?: string[];
   image?: string;
   noIndex?: boolean;
+  /** Home title already contains the brand. Do not append "| JBM SOFT". */
+  suffixBrand?: boolean;
+  /** Layout fallback should not stamp the home canonical onto 404. */
+  includeCanonical?: boolean;
 };
 
 export function absoluteUrl(path = "/") {
@@ -16,24 +20,32 @@ export function absoluteUrl(path = "/") {
   return `${base}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
+export function pageUrl(path = "/") {
+  const base = siteConfig.url.replace(/\/$/, "");
+  if (!path || path === "/") return `${base}/`;
+  const clean = path.startsWith("/") ? path : `/${path}`;
+  return `${base}${clean.endsWith("/") ? clean : `${clean}/`}`;
+}
+
 export function buildMetadata({
   title,
   description,
   path = "/",
-  keywords = [],
+  keywords: _keywords = [],
   image = siteConfig.ogImage,
   noIndex = false,
+  suffixBrand = true,
+  includeCanonical = true,
 }: BuildMetaInput): Metadata {
-  const fullTitle =
-    title === siteConfig.name ? title : `${title} | ${siteConfig.name}`;
-  const url = absoluteUrl(path);
+  void _keywords;
+  const fullTitle = !suffixBrand || title === siteConfig.name ? title : `${title} | ${siteConfig.name}`;
+  const url = pageUrl(path);
   const imageUrl = absoluteUrl(image);
 
   return {
     title: fullTitle,
     description,
-    keywords: [...siteConfig.keywords, ...keywords],
-    alternates: { canonical: url },
+    ...(includeCanonical ? { alternates: { canonical: url } } : {}),
     openGraph: {
       type: "website",
       locale: siteConfig.locale,
@@ -107,21 +119,7 @@ export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: absoluteUrl(item.path),
-    })),
-  };
-}
-
-export function faqJsonLd(
-  faqs: { question: string; answer: string }[],
-) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+      item: pageUrl(item.path),
     })),
   };
 }
@@ -142,5 +140,32 @@ export function softwareAppJsonLd(input: {
     offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
     inLanguage: "ko-KR",
     publisher: { "@type": "Organization", name: siteConfig.name },
+  };
+}
+
+/** Pre-launch Android app. No price, rating, or store URL. */
+export function androidAppJsonLd(input: {
+  name: string;
+  alternateName: string;
+  description: string;
+  path: string;
+  applicationCategory: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    name: input.name,
+    alternateName: input.alternateName,
+    description: input.description,
+    url: pageUrl(input.path),
+    applicationCategory: input.applicationCategory,
+    operatingSystem: "Android",
+    inLanguage: "ko",
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      alternateName: siteConfig.legalName,
+      url: siteConfig.url,
+    },
   };
 }

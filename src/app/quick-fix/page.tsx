@@ -33,7 +33,7 @@ const excluded = [
 export default function QuickFixPage() {
   const subject = encodeURIComponent("[작업 문의] 엑셀·CSV 반복업무 자동화");
   const body = encodeURIComponent(
-    "안녕하세요, JBM SOFT.
+    `안녕하세요, JBM SOFT.
 
 자동화가 필요한 작업을 문의드립니다.
 
@@ -42,7 +42,7 @@ export default function QuickFixPage() {
 3. 원하는 결과:
 4. 샘플 파일 제공 가능 여부:
 
-파일과 범위를 확인한 뒤 진행 가능 여부와 납기를 안내 부탁드립니다."
+파일과 범위를 확인한 뒤 진행 가능 여부와 납기를 안내 부탁드립니다.`,
   );
 
   return (

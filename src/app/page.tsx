@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BrandLogo } from "@/components/BrandLogo";
-import { JsonLd } from "@/components/JsonLd";
+import { firstPartyApps } from "@/data/apps";
 import { portfolioItems } from "@/data/portfolio";
 import { siteConfig } from "@/data/site";
 import { tools } from "@/data/tools";
-import { faqJsonLd } from "@/lib/seo";
+import { buildMetadata } from "@/lib/seo";
 
 const cases = [
   {
@@ -108,6 +108,13 @@ const faqs = [
   },
 ];
 
+export const metadata = buildMetadata({
+  title: "JBM SOFT(제이비엠소프트) – 앱·웹 외주 개발, 8년 실전 개발팀",
+  description: siteConfig.description,
+  path: "/",
+  suffixBrand: false,
+});
+
 const plans = [
   {
     name: "단순 웹 / 소개용",
@@ -141,8 +148,6 @@ export default function HomePage() {
 
   return (
     <>
-      <JsonLd data={faqJsonLd(faqs)} />
-
       <section className="relative overflow-hidden pb-16 pt-16 md:pb-24 md:pt-24">
         <div className="absolute inset-0 -z-10">
           <Image
@@ -170,8 +175,8 @@ export default function HomePage() {
             </h1>
             <p className="mb-7 max-w-[48ch] text-base leading-relaxed text-zinc-300 md:text-lg">
               안녕하세요. {siteConfig.name}는 {siteConfig.years}년간 수많은 프로젝트를
-              책임감 있게 수행한 소프트웨어 전문 개발팀입니다. 웹사이트, 앱, 내부 프로그램 등
-              디지털 솔루션을 직접 설계·제작·관리합니다.
+              책임감 있게 수행한 소프트웨어 전문 개발팀입니다. 안드로이드 앱·웹 개발 외주와
+              내부 프로그램을 직접 설계·제작·관리합니다.
             </p>
             <div className="mb-8 flex flex-wrap gap-3">
               <Link href="/contact" className="btn-primary">
@@ -317,6 +322,11 @@ export default function HomePage() {
           <p className="mt-5 text-sm text-zinc-500">
             결제: 선금 30% → 중도금 40% → 잔금 30% (규모에 따라 조정 가능) · 계약서/세금계산서 지원
           </p>
+          <p className="mt-3 text-sm">
+            <Link href="/pricing" className="font-semibold text-[#35e0c3] hover:underline">
+              기간·견적 기준 페이지
+            </Link>
+          </p>
         </div>
       </section>
 
@@ -324,8 +334,61 @@ export default function HomePage() {
         <div className="container-page">
           <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <div className="eyebrow">Work</div>
-              <h2 className="section-title">제작 사례</h2>
+              <div className="eyebrow">Our apps</div>
+              <h2 className="section-title">JBM SOFT가 직접 만드는 앱</h2>
+              <p className="max-w-2xl text-zinc-400">
+                고객 의뢰로 납품한 외주 사례와 별개입니다. 안드로이드 앱이며, 아직 스토어에 없습니다.
+              </p>
+            </div>
+            <Link href="/apps" className="btn-ghost">
+              앱 안내
+            </Link>
+          </div>
+          <div className="grid gap-4 lg:grid-cols-2">
+            {firstPartyApps.map((app) => (
+              <Link
+                key={app.slug}
+                href={`/apps/${app.slug}`}
+                className="card overflow-hidden transition hover:-translate-y-1 hover:border-[#7c6cff]/45"
+              >
+                <div className="relative aspect-[16/8] bg-[#0c0c12]">
+                  <Image src={app.ogImage} alt="" fill className="object-cover" />
+                </div>
+                <div className="p-5 md:p-6">
+                <div className="mb-3 flex flex-wrap gap-2">
+                  <span className="rounded-full bg-white/10 px-2.5 py-1 text-[11px] font-bold">Android</span>
+                  <span className="rounded-full bg-[#35e0c3]/15 px-2.5 py-1 text-[11px] font-extrabold text-[#35e0c3]">
+                    출시 예정
+                  </span>
+                  <span className="rounded-full border border-white/10 px-2.5 py-1 text-[11px] font-bold text-zinc-300">
+                    자사 앱
+                  </span>
+                </div>
+                <h3 className="text-xl font-black tracking-tight">{app.name}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-zinc-400">{app.cardSummary}</p>
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {app.cardPoints.map((point) => (
+                    <li key={point} className="rounded-full border border-white/10 px-3 py-1 text-xs text-zinc-300">
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20">
+        <div className="container-page">
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <div className="eyebrow">Client work</div>
+              <h2 className="section-title">외주 제작 사례</h2>
+              <p className="max-w-2xl text-sm text-zinc-500">
+                아래는 고객 요청으로 진행한 작업입니다. 위에서 소개한 자사 앱과는 별도입니다.
+              </p>
             </div>
             <Link href="/portfolio" className="btn-ghost">
               전체 보기
@@ -402,6 +465,10 @@ export default function HomePage() {
               ["QR 코드 생성기", "/guides/qr-code-generator"],
               ["웹 크롤링 외주", "/guides/web-crawling-outsource"],
               ["행사 부스 게임", "/guides/event-booth-game"],
+              ["카톡 대화를 PDF로", "/guides/kakao-chat-pdf"],
+              ["카톡 대화 인쇄 체크", "/guides/kakao-chat-print"],
+              ["성능기록부 보는 법", "/guides/used-car-inspection-record"],
+              ["기록부와 실제가 다를 때", "/guides/used-car-warranty-claim"],
             ].map(([label, href]) => (
               <Link key={href} href={href} className="card p-4 transition hover:border-[#7c6cff]/45">
                 <div className="font-bold">{label}</div>
