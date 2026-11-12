@@ -1,3 +1,18 @@
+import { appGuides } from "@/data/app-guides";
+
+export type GuideBlock =
+  | { kind: "p"; text: string }
+  | { kind: "ul"; items: string[] }
+  | { kind: "ol"; items: string[] }
+  | { kind: "note"; text: string }
+  | { kind: "links"; items: { label: string; href: string; note?: string }[] };
+
+export type GuideSection = {
+  heading: string;
+  body?: string;
+  blocks?: GuideBlock[];
+};
+
 export type Guide = {
   slug: string;
   title: string;
@@ -5,11 +20,17 @@ export type Guide = {
   keywords: string[];
   toolSlugs: string[];
   portfolioSlugs: string[];
-  sections: { heading: string; body: string }[];
+  appSlugs?: string[];
+  relatedSlugs?: string[];
+  image?: string;
+  sections: GuideSection[];
+  faqs?: { question: string; answer: string }[];
   cta: string;
+  ctaHref?: string;
+  ctaNote?: string;
 };
 
-export const guides: Guide[] = [
+const coreGuides: Guide[] = [
   {
     slug: "salary-take-home",
     title: "연봉 실수령액 계산기 – 세후 월급 바로 확인",
@@ -123,6 +144,8 @@ export const guides: Guide[] = [
     cta: "행사 게임 제작 문의",
   },
 ];
+
+export const guides: Guide[] = [...coreGuides, ...appGuides];
 
 export function getGuide(slug: string) {
   return guides.find((g) => g.slug === slug);

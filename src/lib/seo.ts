@@ -144,3 +144,35 @@ export function softwareAppJsonLd(input: {
     publisher: { "@type": "Organization", name: siteConfig.name },
   };
 }
+
+/** Pre-launch Android app. No store URL, price, rating, or install count. */
+export function androidAppJsonLd(input: {
+  name: string;
+  description: string;
+  path: string;
+  applicationCategory: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: input.name,
+    description: input.description,
+    url: absoluteUrl(input.path),
+    applicationCategory: input.applicationCategory,
+    operatingSystem: "Android",
+    inLanguage: "ko-KR",
+    offers: {
+      "@type": "Offer",
+      availability: "https://schema.org/PreOrder",
+      url: absoluteUrl("/contact"),
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      legalName: siteConfig.legalName,
+      url: siteConfig.url,
+      logo: absoluteUrl(siteConfig.logo),
+      email: siteConfig.email,
+    },
+  };
+}

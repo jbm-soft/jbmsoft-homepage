@@ -8,8 +8,8 @@ export function Footer() {
 
   return (
     <footer className="mt-20 border-t border-white/10 bg-[#050508]">
-      <div className="mx-auto grid w-[min(1180px,calc(100%-2rem))] gap-10 py-14 md:grid-cols-4">
-        <div className="md:col-span-1">
+      <div className="mx-auto grid w-[min(1180px,calc(100%-2rem))] gap-10 py-14 sm:grid-cols-2 lg:grid-cols-6">
+        <div className="lg:col-span-2">
           <div className="mb-4">
             <BrandLogo size="lg" />
           </div>
@@ -28,6 +28,15 @@ export function Footer() {
             <li><Link href="/privacy" className="hover:text-white">개인정보처리방침</Link></li>
             <li><Link href="/terms" className="hover:text-white">이용약관</Link></li>
           </ul>
+        </div>
+        <div>
+          <div className="mb-3 text-sm font-bold text-zinc-200">직접 만드는 앱</div>
+          <ul className="space-y-2 text-sm text-zinc-400">
+            <li><Link href="/apps" className="hover:text-white">앱 소개</Link></li>
+            <li><Link href="/apps/evidence" className="hover:text-white">증거정리</Link></li>
+            <li><Link href="/apps/used-car-inspect" className="hover:text-white">중고차 셀프검수 키트</Link></li>
+          </ul>
+          <p className="mt-3 text-xs leading-relaxed text-zinc-500">출시 예정 · 외주 사례와 별도</p>
         </div>
         <div>
           <div className="mb-3 text-sm font-bold text-zinc-200">바로 쓰는 도구</div>
