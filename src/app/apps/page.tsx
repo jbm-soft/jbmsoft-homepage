@@ -8,11 +8,11 @@ import { siteConfig } from "@/data/site";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "직접 만드는 앱",
+  title: "JBM SOFT가 직접 만드는 앱 – 대화첩·차보는날·가족차용노트",
   description:
-    "JBM SOFT가 직접 개발하는 안드로이드 앱. 증거정리, 중고차 셀프검수 키트. 출시 예정이며 외주 제작 사례와는 별도입니다.",
+    "JBM SOFT가 직접 개발하는 안드로이드 앱. 대화첩, 차보는날, 가족차용노트. 출시 예정이며 외주 제작 사례와는 별도입니다.",
   path: "/apps",
-  keywords: ["JBM SOFT 앱", "증거정리", "중고차 셀프검수 키트", "안드로이드 앱"],
+  suffixBrand: false,
   image: "/images/apps/hub-og.png",
 });
 

@@ -11,7 +11,7 @@ const links = [
   { href: "/apps", label: "앱" },
   { href: "/tools", label: "무료 도구" },
   { href: "/guides", label: "가이드" },
-  { href: "/#pricing", label: "기간·견적" },
+  { href: "/pricing", label: "기간·견적" },
   { href: "/contact", label: "문의" },
 ];
 

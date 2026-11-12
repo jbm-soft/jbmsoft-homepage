@@ -1,12 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BrandLogo } from "@/components/BrandLogo";
-import { JsonLd } from "@/components/JsonLd";
 import { firstPartyApps } from "@/data/apps";
 import { portfolioItems } from "@/data/portfolio";
 import { siteConfig } from "@/data/site";
 import { tools } from "@/data/tools";
-import { faqJsonLd } from "@/lib/seo";
+import { buildMetadata } from "@/lib/seo";
 
 const cases = [
   {
@@ -109,6 +108,13 @@ const faqs = [
   },
 ];
 
+export const metadata = buildMetadata({
+  title: "JBM SOFT(제이비엠소프트) – 앱·웹 외주 개발, 8년 실전 개발팀",
+  description: siteConfig.description,
+  path: "/",
+  suffixBrand: false,
+});
+
 const plans = [
   {
     name: "단순 웹 / 소개용",
@@ -142,8 +148,6 @@ export default function HomePage() {
 
   return (
     <>
-      <JsonLd data={faqJsonLd(faqs)} />
-
       <section className="relative overflow-hidden pb-16 pt-16 md:pb-24 md:pt-24">
         <div className="absolute inset-0 -z-10">
           <Image
@@ -171,8 +175,8 @@ export default function HomePage() {
             </h1>
             <p className="mb-7 max-w-[48ch] text-base leading-relaxed text-zinc-300 md:text-lg">
               안녕하세요. {siteConfig.name}는 {siteConfig.years}년간 수많은 프로젝트를
-              책임감 있게 수행한 소프트웨어 전문 개발팀입니다. 웹사이트, 앱, 내부 프로그램 등
-              디지털 솔루션을 직접 설계·제작·관리합니다.
+              책임감 있게 수행한 소프트웨어 전문 개발팀입니다. 안드로이드 앱·웹 개발 외주와
+              내부 프로그램을 직접 설계·제작·관리합니다.
             </p>
             <div className="mb-8 flex flex-wrap gap-3">
               <Link href="/contact" className="btn-primary">
@@ -317,6 +321,11 @@ export default function HomePage() {
           </div>
           <p className="mt-5 text-sm text-zinc-500">
             결제: 선금 30% → 중도금 40% → 잔금 30% (규모에 따라 조정 가능) · 계약서/세금계산서 지원
+          </p>
+          <p className="mt-3 text-sm">
+            <Link href="/pricing" className="font-semibold text-[#35e0c3] hover:underline">
+              기간·견적 기준 페이지
+            </Link>
           </p>
         </div>
       </section>

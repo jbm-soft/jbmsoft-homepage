@@ -5,13 +5,15 @@ import { JsonLd } from "@/components/JsonLd";
 import { firstPartyApps, prelaunchMailto, type FirstPartyApp } from "@/data/apps";
 import { getGuide } from "@/data/guides";
 import { siteConfig } from "@/data/site";
-import { androidAppJsonLd, breadcrumbJsonLd, faqJsonLd, organizationJsonLd } from "@/lib/seo";
+import { adequateInterestLabel } from "@/data/tax-reference";
+import { androidAppJsonLd, breadcrumbJsonLd, organizationJsonLd } from "@/lib/seo";
 
 export function AppLanding({ app }: { app: FirstPartyApp }) {
   const mailto = prelaunchMailto(app.notifySubject);
   const guides = app.guideSlugs.map((slug) => getGuide(slug)).filter((guide) => guide !== undefined);
   const others = firstPartyApps.filter((item) => item.slug !== app.slug);
-  const accent = app.accent === "mint" ? "text-[#35e0c3]" : "text-[#7c6cff]";
+  const accent =
+    app.accent === "green" ? "text-[#3dd68c]" : app.accent === "orange" ? "text-[#ff9a4a]" : "text-[#7ec8ff]";
 
   return (
     <>
@@ -20,6 +22,7 @@ export function AppLanding({ app }: { app: FirstPartyApp }) {
           organizationJsonLd(),
           androidAppJsonLd({
             name: app.name,
+            alternateName: app.alternateName,
             description: app.description,
             path: `/apps/${app.slug}`,
             applicationCategory: app.applicationCategory,
@@ -29,7 +32,6 @@ export function AppLanding({ app }: { app: FirstPartyApp }) {
             { name: "앱", path: "/apps" },
             { name: app.name, path: `/apps/${app.slug}` },
           ]),
-          faqJsonLd(app.faqs),
         ]}
       />
 
@@ -47,24 +49,23 @@ export function AppLanding({ app }: { app: FirstPartyApp }) {
               <span aria-hidden className="px-1.5">/</span>
               <span className="text-zinc-200">{app.name}</span>
             </nav>
+            <p className="mb-4 text-sm font-bold text-zinc-300">JBM SOFT가 직접 만드는 앱 · 출시 준비 중</p>
             <div className="mb-4 flex flex-wrap gap-2">
+              <span className={`rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[11px] font-extrabold ${accent}`}>
+                JBM SOFT 앱
+              </span>
               <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[11px] font-bold">
                 Android
               </span>
               <span className="rounded-full border border-[#35e0c3]/30 bg-[#35e0c3]/10 px-3 py-1 text-[11px] font-extrabold text-[#35e0c3]">
                 출시 예정
               </span>
-              <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[11px] font-bold">
-                JBM SOFT 개발
-              </span>
             </div>
-            <p className={`mb-3 text-sm font-extrabold ${accent}`}>{app.name}</p>
-            <h1 className="mb-4 max-w-[12ch] text-[clamp(2.2rem,6vw,4rem)] font-black leading-[1.05] tracking-[-0.05em]">
-              {app.headline}
-              <br />
-              <span className="gradient-text">{app.headlineAccent}</span>
-            </h1>
-            <p className="mb-6 max-w-[52ch] text-base leading-relaxed text-zinc-300 md:text-lg">{app.lead}</p>
+            <h1 className="text-[clamp(2.6rem,7vw,4.6rem)] font-black leading-none tracking-[-0.05em]">{app.name}</h1>
+            <p className={`mt-4 max-w-[18ch] text-[clamp(1.35rem,3vw,2rem)] font-extrabold leading-snug tracking-tight ${accent}`}>
+              {app.subtitle}
+            </p>
+            <p className="mb-6 mt-4 max-w-[52ch] text-base leading-relaxed text-zinc-300 md:text-lg">{app.oneLiner}</p>
             <div className="rounded-[1.25rem] border border-white/10 bg-[#101016]/80 p-4 backdrop-blur-sm md:p-5">
               <div className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-zinc-500">
                 출시 후 앱에서
@@ -78,9 +79,13 @@ export function AppLanding({ app }: { app: FirstPartyApp }) {
                   출시 알림 받기
                 </a>
                 <Link href="/contact" className="btn-ghost">
-                  문의 페이지
+                  문의
                 </Link>
+                <a href="#how" className="inline-flex items-center text-sm font-semibold text-zinc-300 underline decoration-white/20 underline-offset-4">
+                  어떻게 쓰나요
+                </a>
               </div>
+              <p className="mt-3 text-xs leading-relaxed text-zinc-400">{app.fixedNotice}</p>
               <p className="mt-3 text-xs leading-relaxed text-zinc-500">
                 <a className="underline decoration-white/20 underline-offset-4 hover:text-white" href={`mailto:${siteConfig.email}`}>
                   {siteConfig.email}
@@ -104,10 +109,20 @@ export function AppLanding({ app }: { app: FirstPartyApp }) {
         </div>
       </section>
 
-      <section className="py-16 md:py-20">
+      {app.slug === "family-loan" ? (
+        <section className="pb-4">
+          <div className="container-page">
+            <p className="card p-5 text-sm leading-relaxed text-zinc-300">
+              이자 참고 계산에 쓰는 값은 {adequateInterestLabel()}입니다. 이 값은 코드의 한곳에서만 바꾸며, 계산 결과는 참고입니다.
+            </p>
+          </div>
+        </section>
+      ) : null}
+
+      <section id="how" className="py-16 md:py-20">
         <div className="container-page">
           <div className="eyebrow">How it works</div>
-          <h2 className="section-title">이렇게 씁니다</h2>
+          <h2 className="section-title">사용 순서</h2>
           <div className="grid gap-3 md:grid-cols-2">
             {app.steps.map((step, index) => (
               <article key={step.title} className="card p-5">
@@ -229,19 +244,19 @@ export function AppLanding({ app }: { app: FirstPartyApp }) {
         <div className="container-page">
           <div className="card flex flex-col gap-4 p-6 md:flex-row md:items-center md:justify-between">
             <div>
-              <h2 className="text-xl font-extrabold tracking-tight">JBM SOFT가 직접 개발합니다</h2>
+              <h2 className="text-xl font-extrabold tracking-tight">이 앱은 JBM SOFT가 직접 기획·개발합니다</h2>
               <p className="mt-2 max-w-2xl text-sm leading-relaxed text-zinc-400">
-                {app.name}은 고객 의뢰로 납품한 외주 사례가 아닙니다. {siteConfig.legalName}({siteConfig.brandEn})가
-                기획하고 만드는 안드로이드 앱입니다. 외주 제작 사례는 별도의 포트폴리오에서 볼 수 있습니다.
+                {app.name}은 고객 의뢰로 납품한 외주 사례가 아닙니다. {siteConfig.legalName}({siteConfig.brandEn})가 만듭니다.
+                이런 앱 제작이 필요하면 앱 개발 외주 문의로 이어집니다.
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
-              <a href={siteConfig.url} className="btn-primary">
+              <Link href="/services/app-development" className="btn-primary">
+                앱 개발 외주 문의
+              </Link>
+              <a href={siteConfig.url} className="btn-ghost">
                 jbmsoft.co.kr
               </a>
-              <Link href="/portfolio" className="btn-ghost">
-                외주 사례와 구분
-              </Link>
             </div>
           </div>
         </div>

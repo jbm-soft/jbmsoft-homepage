@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const item = getPortfolio(slug);
   if (!item) return {};
   return buildMetadata({
-    title: `${item.title} 포트폴리오`,
+    title: `${item.title} 개발 사례`,
     description: item.lead,
     path: `/portfolio/${item.slug}`,
     keywords: item.tags,
@@ -50,10 +50,12 @@ export default async function PortfolioDetailPage({ params }: Props) {
           </span>
         ) : null}
       </div>
-      <h1 className="section-title">
-        {String(item.id).padStart(2, "0")}. {item.title}
-      </h1>
-      <p className="mb-8 max-w-2xl text-zinc-300">{item.lead}</p>
+      <h1 className="section-title">{item.title} 개발 사례</h1>
+      <p className="mb-4 max-w-2xl text-zinc-300">{item.lead}</p>
+      <p className="mb-8 max-w-2xl text-sm leading-relaxed text-zinc-400">
+        {item.category} 범위의 외주 작업입니다. 아래 포함 범위와 비슷한 의뢰 유형은 이 저장소에 정리된 내용이고,
+        기간과 금액은 케이스마다 달라 이 페이지에 단정하지 않습니다. 기준은 기간·견적 페이지에서 보고, 안드로이드 앱이면 앱 개발 외주 안내를 함께 보시면 됩니다.
+      </p>
 
       <div className="mb-8 overflow-hidden rounded-[22px] border border-white/10">
         <Image
@@ -103,9 +105,17 @@ export default async function PortfolioDetailPage({ params }: Props) {
           <div className="font-bold">비슷한 작업 의뢰하기</div>
           <p className="text-sm text-zinc-400">범위·일정·예산 감 잡고 바로 제안드립니다.</p>
         </div>
-        <Link href="/contact" className="btn-primary">
-          문의하기
-        </Link>
+        <div className="flex flex-wrap gap-3">
+          <Link href="/contact" className="btn-primary">
+            문의하기
+          </Link>
+          <Link href="/pricing" className="btn-ghost">
+            기간·견적
+          </Link>
+          <Link href="/services/app-development" className="btn-ghost">
+            앱 개발 외주
+          </Link>
+        </div>
       </div>
     </div>
   );

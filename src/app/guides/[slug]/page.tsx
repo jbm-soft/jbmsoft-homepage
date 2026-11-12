@@ -3,11 +3,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
 import { getApp } from "@/data/apps";
+import { siteConfig } from "@/data/site";
 import { getGuide, guides, type GuideBlock } from "@/data/guides";
 import { getPortfolio } from "@/data/portfolio";
-import { siteConfig } from "@/data/site";
 import { getTool } from "@/data/tools";
-import { breadcrumbJsonLd, buildMetadata, faqJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -113,10 +113,10 @@ export default async function GuidePage({ params }: Props) {
       description: guide.description,
       author: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
       publisher: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
-      keywords: guide.keywords.join(", "),
+      datePublished: "2026-11-12",
+      dateModified: "2026-11-12",
       inLanguage: "ko-KR",
     },
-    ...(guide.faqs?.length ? [faqJsonLd(guide.faqs)] : []),
   ];
 
   return (
@@ -129,16 +129,19 @@ export default async function GuidePage({ params }: Props) {
       </nav>
       <div className="eyebrow">Guide</div>
       <h1 className="section-title max-w-4xl">{guide.title}</h1>
-      <p className="mb-6 max-w-3xl text-zinc-400">{guide.description}</p>
+      <p className="mb-2 max-w-3xl text-zinc-400">{guide.description}</p>
+      <p className="mb-8 text-xs text-zinc-500">작성 {siteConfig.name} · 2026-11-12</p>
 
-      <div className="mb-10">
-        <Link href={ctaHref} className="btn-primary inline-flex">
-          {guide.cta}
-        </Link>
-        {guide.ctaNote ? (
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-zinc-400">{guide.ctaNote}</p>
-        ) : null}
-      </div>
+      {apps.length ? null : (
+        <div className="mb-10">
+          <Link href={ctaHref} className="btn-primary inline-flex">
+            {guide.cta}
+          </Link>
+          {guide.ctaNote ? (
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-zinc-400">{guide.ctaNote}</p>
+          ) : null}
+        </div>
+      )}
 
       <div className="mb-12 space-y-6">
         {guide.sections.map((section) => (
@@ -167,20 +170,20 @@ export default async function GuidePage({ params }: Props) {
       ) : null}
 
       {apps.length ? (
-        <section className="mb-12">
-          <h2 className="mb-2 text-xl font-bold">JBM SOFT가 준비 중인 앱</h2>
-          <p className="mb-4 text-sm text-zinc-500">
-            외주 제작 사례와는 별개입니다. 아직 스토어에 없으며 출시 예정입니다.
-          </p>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {apps.map((app) => (
-              <Link key={app.slug} href={`/apps/${app.slug}`} className="card p-4 hover:border-[#7c6cff]/45">
-                <div className="text-[11px] font-extrabold text-[#35e0c3]">출시 예정 · {siteConfig.name}</div>
-                <div className="mt-1 font-bold">{app.name}</div>
-                <p className="mt-1 text-sm text-zinc-400">{app.cardSummary}</p>
-              </Link>
-            ))}
+        <section className="mb-12 rounded-[1.5rem] border border-white/10 bg-[#101016] p-6 md:p-8">
+          <p className="text-base leading-relaxed text-zinc-200">{apps[0].guideEndCta}</p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <Link href={`/apps/${apps[0].slug}`} className="btn-primary">
+              {apps[0].name} 알아보기
+            </Link>
+            <a
+              href={`mailto:${siteConfig.email}?subject=${encodeURIComponent(apps[0].notifySubject)}`}
+              className="btn-ghost"
+            >
+              출시 알림 받기
+            </a>
           </div>
+          <p className="mt-3 text-xs text-zinc-500">출시 준비 중이며, 지금은 알림과 문의만 받습니다. 외주 사례와는 별개입니다.</p>
         </section>
       ) : null}
 

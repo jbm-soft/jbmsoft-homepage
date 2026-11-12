@@ -1,11 +1,12 @@
 import type { ReactNode } from "react";
 
 type Props = {
-  variant: "evidence" | "used-car-inspect";
+  variant: "evidence" | "used-car-inspect" | "family-loan";
 };
 
 export function ConceptVisual({ variant }: Props) {
   if (variant === "evidence") return <EvidenceConcept />;
+  if (variant === "family-loan") return <FamilyLoanConcept />;
   return <UsedCarConcept />;
 }
 
@@ -32,7 +33,7 @@ function EvidenceConcept() {
       <Device>
         <div className="mb-3 flex items-end justify-between gap-3">
           <div>
-            <div className="text-[11px] font-bold text-[#7c6cff]">증거정리</div>
+            <div className="text-[11px] font-bold text-[#7ec8ff]">대화첩</div>
             <div className="text-base font-extrabold tracking-tight">대화 정리</div>
           </div>
           <div className="text-xs font-bold text-[#35e0c3]">3 / 12</div>
@@ -112,7 +113,7 @@ function UsedCarConcept() {
       <div className="pointer-events-none absolute -inset-6 -z-10 rounded-full bg-[radial-gradient(circle_at_50%_40%,rgba(53,224,195,.2),transparent_62%)]" />
       <Device>
         <div className="mb-3">
-          <div className="text-[11px] font-bold text-[#35e0c3]">중고차 셀프검수 키트</div>
+          <div className="text-[11px] font-bold text-[#3dd68c]">차보는날</div>
           <div className="text-base font-extrabold tracking-tight">성능점검기록부</div>
         </div>
         <ul className="space-y-2">
@@ -151,6 +152,49 @@ function UsedCarConcept() {
       </div>
       <p className="mx-auto mt-3 max-w-[440px] text-center text-xs leading-relaxed text-zinc-500">
         기록부를 쉬운 말로 읽는 구성입니다. 사고 여부를 판정하는 화면이 아닙니다.
+      </p>
+    </div>
+  );
+}
+
+function FamilyLoanConcept() {
+  return (
+    <div className="relative">
+      <div className="pointer-events-none absolute -inset-6 -z-10 rounded-full bg-[radial-gradient(circle_at_50%_40%,rgba(255,154,74,.22),transparent_62%)]" />
+      <Device>
+        <div className="mb-3">
+          <div className="text-[11px] font-bold text-[#ff9a4a]">가족차용노트</div>
+          <div className="text-base font-extrabold tracking-tight">상환 기록</div>
+        </div>
+        <div className="mb-3 grid grid-cols-2 gap-2 text-xs">
+          <div className="rounded-xl border border-white/10 p-3">
+            <div className="text-[10px] font-bold text-zinc-500">증여분 · 참고</div>
+            <div className="mt-1 font-extrabold">화면에서 나눔</div>
+          </div>
+          <div className="rounded-xl border border-[#ff9a4a]/30 bg-[#ff9a4a]/10 p-3">
+            <div className="text-[10px] font-bold text-[#ff9a4a]">차용분 · 참고</div>
+            <div className="mt-1 font-extrabold">이자 일정</div>
+          </div>
+        </div>
+        <ul className="space-y-2 text-xs text-zinc-300">
+          {["1회 · 이자 이체 화면", "2회 · 이자 이체 화면", "원금 · 아직 기록 전"].map((row) => (
+            <li key={row} className="rounded-xl border border-white/10 px-3 py-2">
+              {row}
+            </li>
+          ))}
+        </ul>
+        <p className="mt-3 text-[11px] leading-relaxed text-zinc-500">기준일은 계산 옆에 표시합니다. 신고 화면이 아닙니다.</p>
+      </Device>
+      <div className="card relative z-10 -mt-8 ml-6 p-4 sm:ml-10">
+        <h3 className="text-sm font-extrabold">차용증에 남길 것</h3>
+        <ul className="mt-2 space-y-1 text-xs text-zinc-300">
+          <li>당사자</li>
+          <li>금액 · 이자 · 갚는 날</li>
+          <li>작성일</li>
+        </ul>
+      </div>
+      <p className="mx-auto mt-3 max-w-[440px] text-center text-xs leading-relaxed text-zinc-500">
+        기록을 모으는 구성입니다. 세무 상담 화면이 아닙니다.
       </p>
     </div>
   );

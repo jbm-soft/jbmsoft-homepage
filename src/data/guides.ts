@@ -1,4 +1,5 @@
 import { appGuides } from "@/data/app-guides";
+import { extraGuides } from "@/data/extra-guides";
 
 export type GuideBlock =
   | { kind: "p"; text: string }
@@ -145,7 +146,7 @@ const coreGuides: Guide[] = [
   },
 ];
 
-export const guides: Guide[] = [...coreGuides, ...appGuides];
+export const guides: Guide[] = [...coreGuides, ...appGuides, ...extraGuides];
 
 export function getGuide(slug: string) {
   return guides.find((g) => g.slug === slug);

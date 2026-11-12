@@ -4,9 +4,9 @@ import { guides } from "@/data/guides";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "가이드 – 실수령액·대화 PDF·성능기록부",
+  title: "가이드 – 대화 PDF·성능기록부·가족 차용·앱 개발 외주",
   description:
-    "연봉 실수령액, 온라인 타이머, QR, 크롤링, 행사 게임, 카톡 대화 PDF, 중고차 성능점검기록부를 주제별로 정리한 가이드.",
+    "카톡 대화 PDF, 성능기록부, 부모 자식 차용증, 앱 개발 외주 견적처럼 검색해서 따라 하는 가이드입니다.",
   path: "/guides",
   keywords: [
     "연봉 실수령액 계산기",
@@ -24,8 +24,9 @@ export default function GuidesPage() {
     <div className="container-page py-14 md:py-20">
       <div className="eyebrow">Guides</div>
       <h1 className="section-title">검색으로 찾는 실무 가이드</h1>
-      <p className="mb-8 max-w-2xl text-zinc-400">
+      <p className="mb-3 max-w-2xl text-zinc-400">
         바로 쓰는 무료 도구, 외주 전에 볼 제작 가이드, 그리고 JBM SOFT 자사 앱과 함께 읽을 정리 방법을 모았습니다.
+        네이버 수집용 피드는 <a href="/guides/rss.xml">가이드 RSS</a>입니다.
       </p>
       <div className="grid gap-4 md:grid-cols-2">
         {guides.map((guide) => (

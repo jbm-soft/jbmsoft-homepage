@@ -24,6 +24,8 @@ export function Footer() {
             <li><Link href="/portfolio" className="hover:text-white">제작 사례</Link></li>
             <li><Link href="/tools" className="hover:text-white">무료 도구</Link></li>
             <li><Link href="/guides" className="hover:text-white">가이드</Link></li>
+            <li><Link href="/services/app-development" className="hover:text-white">앱 개발 외주</Link></li>
+            <li><Link href="/pricing" className="hover:text-white">기간·견적</Link></li>
             <li><Link href="/contact" className="hover:text-white">문의</Link></li>
             <li><Link href="/privacy" className="hover:text-white">개인정보처리방침</Link></li>
             <li><Link href="/terms" className="hover:text-white">이용약관</Link></li>
@@ -33,8 +35,9 @@ export function Footer() {
           <div className="mb-3 text-sm font-bold text-zinc-200">직접 만드는 앱</div>
           <ul className="space-y-2 text-sm text-zinc-400">
             <li><Link href="/apps" className="hover:text-white">앱 소개</Link></li>
-            <li><Link href="/apps/evidence" className="hover:text-white">증거정리</Link></li>
-            <li><Link href="/apps/used-car-inspect" className="hover:text-white">중고차 셀프검수 키트</Link></li>
+            <li><Link href="/apps/evidence" className="hover:text-white">대화첩</Link></li>
+            <li><Link href="/apps/used-car-inspect" className="hover:text-white">차보는날</Link></li>
+            <li><Link href="/apps/family-loan" className="hover:text-white">가족차용노트</Link></li>
           </ul>
           <p className="mt-3 text-xs leading-relaxed text-zinc-500">출시 예정 · 외주 사례와 별도</p>
         </div>
