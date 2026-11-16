@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { ToolsGrid } from "@/components/ToolsGrid";
 import { JsonLd } from "@/components/JsonLd";
 import { tools } from "@/data/tools";
@@ -22,19 +23,33 @@ export const metadata: Metadata = buildMetadata({
 
 export default function ToolsPage() {
   return (
-    <div className="container-page py-14 md:py-20">
+    <div className="container-page py-12 md:py-16">
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "홈", path: "/" },
           { name: "무료 유틸", path: "/tools" },
         ])}
       />
-      <div className="eyebrow">Tools</div>
-      <h1 className="section-title">바로 쓰는 무료 도구 {tools.length}개</h1>
-      <p className="mb-8 max-w-2xl text-zinc-400">
-        타이머, QR, 글자수 계산 등 일상과 업무에 바로 쓸 수 있는 웹 도구입니다.
-        입력값은 브라우저에서만 처리됩니다.
-      </p>
+
+      <div className="relative mb-10 overflow-hidden rounded-3xl border border-white/12 bg-[#0c1018]">
+        <Image
+          src="/images/tools-hub-banner.jpg"
+          alt="JBMSOFT 무료 웹 도구 허브"
+          fill
+          priority
+          className="object-cover opacity-40"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#080a0f]/95 via-[#080a0f]/80 to-transparent" />
+        <div className="relative z-10 p-7 md:p-10">
+          <div className="eyebrow">Tools Hub</div>
+          <h1 className="section-title">바로 쓰는 무료 웹 도구 {tools.length}개</h1>
+          <p className="max-w-2xl text-sm leading-relaxed text-slate-300 md:text-base">
+            타이머, HWP 뷰어, 실수령액 계산기, QR 생성기, 이미지·파일 변환까지 설치와 로그인 없이
+            브라우저에서 즉시 실행됩니다. 입력 데이터는 서버로 전송되지 않습니다.
+          </p>
+        </div>
+      </div>
+
       <ToolsGrid />
     </div>
   );
